@@ -12,7 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
-import { TasksComponent } from './tasks/tasks.component';
+import { TasksListComponent } from './tasks/tasks-list/tasks-list.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { TasksComponent } from './tasks/tasks.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    TasksComponent
+    TasksListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -32,7 +32,7 @@ import { TasksComponent } from './tasks/tasks.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
-      { path: 'tasks', component: TasksComponent },
+      { path: 'tasks', component: TasksListComponent },
     ])
   ],
   providers: [

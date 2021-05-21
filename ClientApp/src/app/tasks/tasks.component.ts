@@ -8,17 +8,8 @@ import { Task } from './task.model';
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent{
 
-  public tasks: Task[];
-
-  constructor(http: HttpClient, @Inject('API_URL') apiUrl: string) {
-    http.get<Task[]>(apiUrl + 'tasks').subscribe(result => {
-      this.tasks = result;
-    }, error => console.error(error));
-  }
-
-  ngOnInit() {
-  }
+  
 
 }
