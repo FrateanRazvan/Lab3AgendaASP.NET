@@ -29,6 +29,12 @@ namespace Lab3AgendaV2.Controllers
             return await _context.Tasks.ToListAsync();
         }
 
+        /// <summary>
+        ///   Returns filters tasks by deadline 
+        /// </summary>
+        /// <param name="startDate">start of date check</param>
+        /// <param name="endDate">end of date check</param>
+        /// <returns>A list of tasks with the deadline</returns>
         [HttpGet]
         [Route("filter/startDate={startDate:datetime}&endDate={endDate:datetime}")]
         public async Task<ActionResult<IEnumerable<Models.Task>>> FilterByTaskDeadline(DateTime startDate, DateTime endDate)
