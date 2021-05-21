@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Lab3AgendaV2.Data;
 using Lab3AgendaV2.Models;
+using Lab3AgendaV2.ViewModel;
 
 namespace Lab3AgendaV2.Controllers
 {
@@ -60,16 +61,28 @@ namespace Lab3AgendaV2.Controllers
 
         // GET: api/Tasks/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Models.Task>> GetTask(int id)
+        public async Task<ActionResult<TaskViewModel>> GetTask(int id)
         {
             var task = await _context.Tasks.FindAsync(id);
+
+            var taskViewModel = new TaskViewModel
+            {
+                Id = task.Id,
+                Title = task.Title,
+                Description = task.Description,
+                DateTimeAdded = task.DateTimeAdded,
+                DateTimeDeadline = task.DateTimeDeadline,
+                Importance = task.Importance,
+                State = task.State,
+                DateTimeClosedAt = task.DateTimeClosedAt
+            };
 
             if (task == null)
             {
                 return NotFound();
             }
 
-            return task;
+            return taskViewModel;
         }
 
         // PUT: api/Tasks/5
@@ -142,7 +155,7 @@ namespace Lab3AgendaV2.Controllers
 
             _context.Comments.Remove(comment);
             await _context.SaveChangesAsync();
-
+            
             return NoContent();
         }
 
