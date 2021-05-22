@@ -17,7 +17,7 @@ export class TasksService {
   }
 
   getTasks(): Observable<Task[]> {
-    return this.httpClient.get<Task[]>(this.apiUrl + 'Tasks');
+    return this.httpClient.get<Task[]>(this.apiUrl + 'tasks');
   }
 
 }

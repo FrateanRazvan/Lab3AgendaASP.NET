@@ -10,6 +10,12 @@ import { Task } from './task.model';
 })
 export class TasksComponent{
 
-  
+  public tasks: Task[];
+
+  constructor(http: HttpClient, @Inject('API_URL') apiUrl: string) {
+    http.get<Task[]>(apiUrl + 'tasks').subscribe(result => {
+      this.tasks = result;
+    }, error => console.error(error));
+  }
 
 }

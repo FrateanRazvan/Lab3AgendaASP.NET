@@ -59,9 +59,30 @@ namespace Lab3AgendaV2.Controllers
         }
 
         [HttpGet("{id}/Comments")]
-        public ActionResult<IEnumerable<Comment>> GetCommentForTask(int id)
+        public ActionResult<IEnumerable<TaskWithCommentViewModel>> GetCommentForTask(int id)
         {
-            return _context.Comments.Where(comm => comm.Task.Id == id).ToList();
+            var query = _context.Comments.Where(comm => comm.Task.Id == id).Select(c => new TaskWithCommentViewModel
+            {
+                Id = c.Task.Id,
+                Title = c.Task.Title,
+                Description = c.Task.Description,
+                DateTimeAdded = c.Task.DateTimeAdded,
+                DateTimeDeadline = c.Task.DateTimeDeadline,
+                Importance = c.Task.Importance,
+                State = c.Task.State,
+                DateTimeClosedAt = c.Task.DateTimeClosedAt,
+                Comments = c.Task.Comments.Select(tc => new CommentViewModel
+                {
+                    Id = tc.Id,
+                    Text = tc.Text,
+                    Important = tc.Important,
+                    CommentDatetime = tc.CommentDatetime
+
+                }).ToList()
+
+            }) ;
+
+            return query.ToList();
         }
 
 
