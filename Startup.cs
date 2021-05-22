@@ -32,6 +32,8 @@ namespace Lab3AgendaV2
         {
             services.AddAutoMapper(typeof(MappingProfile));
 
+            //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));

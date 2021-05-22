@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using Lab3AgendaV2.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Lab3AgendaV2.Models;
 
 namespace Lab3AgendaV2
 {
@@ -12,10 +9,9 @@ namespace Lab3AgendaV2
 
         public MappingProfile()
         {
-
             CreateMap<Task, TaskViewModel>();
             CreateMap<CommentViewModel, CommentViewModel>();
-            CreateMap<Task, TaskWithCommentViewModel>();
+            CreateMap<Task, TaskWithCommentViewModel>().ReverseMap();
         }
     }
 }

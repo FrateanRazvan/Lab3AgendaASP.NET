@@ -85,9 +85,9 @@ namespace Lab3AgendaV2.Controllers
 
             }) ;
 
-            var queryAutoMap = _context.Tasks.Where(comm => comm.Id == id).Select(t => _mapper.Map<TaskWithCommentViewModel>(t));
+            var query_two = _context.Tasks.Where(comm => comm.Id == id).Select(t => _mapper.Map<TaskWithCommentViewModel>(t));
 
-            return queryAutoMap.ToList();
+            return query_two.ToList();
         }
 
 
