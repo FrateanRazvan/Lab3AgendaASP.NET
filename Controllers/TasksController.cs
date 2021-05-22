@@ -141,8 +141,10 @@ namespace Lab3AgendaV2.Controllers
         // POST: api/Tasks
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Models.Task>> PostTask(Models.Task task)
+        public async Task<ActionResult<TaskViewModel>> PostTask(TaskViewModel taskRequest)
         {
+            Models.Task task = _mapper.Map<Models.Task>(taskRequest);
+
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
 

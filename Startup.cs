@@ -1,5 +1,9 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Lab3AgendaV2.Data;
 using Lab3AgendaV2.Models;
+using Lab3AgendaV2.Validators;
+using Lab3AgendaV2.ViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +34,7 @@ namespace Lab3AgendaV2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddAutoMapper(typeof(MappingProfile));
 
             //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -48,7 +53,8 @@ namespace Lab3AgendaV2
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddFluentValidation();
             services.AddRazorPages();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -83,7 +89,7 @@ namespace Lab3AgendaV2
                 c.IncludeXmlComments(xmlPath);
             });
 
-            
+            services.AddTransient<IValidator<TaskViewModel>, TaskValidator>();
 
         }
 

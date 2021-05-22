@@ -10,23 +10,23 @@ namespace Lab3AgendaV2.Models
     {
         public int Id { get; set; }
 
-        [Required, MaxLength(80)]
+       // [Required, MaxLength(80)]
         public string Title { get; set; }
 
-        [Required, MaxLength(2000)]
+       // [Required, MaxLength(2000)]
         public string Description { get; set; }
 
-        [Required]
+       // [Required]
         public DateTime DateTimeAdded { get; set; }
 
-        [Required]
+       // [Required]
         public DateTime DateTimeDeadline { get; set; }
 
-        [Required]
+       // [Required]
         //low, medium, high
         public string Importance { get; set; }
 
-        [Required]
+       // [Required]
         //open, in progress, closed
         public string State { get; set; }
         public DateTime DateTimeClosedAt { get; set; }
