@@ -9,8 +9,8 @@ namespace Lab3AgendaV2
 
         public MappingProfile()
         {
-            CreateMap<Task, TaskViewModel>();
-            CreateMap<CommentViewModel, CommentViewModel>();
+            CreateMap<Task, TaskViewModel>().ReverseMap();
+            CreateMap<Comment, CommentViewModel>().ReverseMap();
             CreateMap<Task, TaskWithCommentViewModel>().ReverseMap();
         }
     }
