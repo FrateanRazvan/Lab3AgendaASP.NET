@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Lab3AgendaV2.Data;
 using Lab3AgendaV2.Models;
 using Lab3AgendaV2.ViewModel;
+using AutoMapper;
 
 namespace Lab3AgendaV2.Controllers
 {
@@ -16,10 +17,12 @@ namespace Lab3AgendaV2.Controllers
     public class TasksController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public TasksController(ApplicationDbContext context)
+        public TasksController(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Tasks
@@ -82,7 +85,9 @@ namespace Lab3AgendaV2.Controllers
 
             }) ;
 
-            return query.ToList();
+            var queryAutoMap = _context.Tasks.Where(comm => comm.Id == id).Select(t => _mapper.Map<TaskWithCommentViewModel>(t));
+
+            return queryAutoMap.ToList();
         }
 
 
@@ -92,22 +97,12 @@ namespace Lab3AgendaV2.Controllers
         {
             var task = await _context.Tasks.FindAsync(id);
 
-            var taskViewModel = new TaskViewModel
-            {
-                Id = task.Id,
-                Title = task.Title,
-                Description = task.Description,
-                DateTimeAdded = task.DateTimeAdded,
-                DateTimeDeadline = task.DateTimeDeadline,
-                Importance = task.Importance,
-                State = task.State,
-                DateTimeClosedAt = task.DateTimeClosedAt
-            };
-
             if (task == null)
             {
                 return NotFound();
             }
+
+            var taskViewModel = _mapper.Map<TaskViewModel>(task);
 
             return taskViewModel;
         }
