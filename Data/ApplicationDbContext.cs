@@ -14,6 +14,7 @@ namespace Lab3AgendaV2.Data
     {
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Task> Tasks { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public ApplicationDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
