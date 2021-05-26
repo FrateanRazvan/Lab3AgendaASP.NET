@@ -1,32 +1,32 @@
-<h1 id="tableLabel">Tasks view</h1>
+<h1 id="tablelabel">tasks view</h1>
 
-<p>This component lists the tasks</p>
+<p>this component lists the tasks</p>
 
-<p *ngIf="!tasks"><em>Loading...</em></p>
+<p *ngif="!tasks"><em>loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="tasks">
+<table class='table table-striped' aria-labelledby="tablelabel" *ngif="tasks">
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>DateTimeAdded</th>
-      <th>DateTimeDeadline</th>
-      <th>Importance</th>
-      <th>State</th>
-      <th>DatetimeCloseAt</th>
+      <th>id</th>
+      <th>title</th>
+      <th>description</th>
+      <th>datetimeadded</th>
+      <th>datetimedeadline</th>
+      <th>importance</th>
+      <th>state</th>
+      <th>datetimecloseat</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let task of tasks">
+    <tr *ngfor="let task of tasks">
       <td>{{ task.id }}</td>
       <td>{{ task.title }}</td>
       <td>{{ task.description }}</td>
-      <td>{{ task.dateTimeAdded }}</td>
-      <td>{{ task.dateTimeDeadline }}</td>
+      <td>{{ task.datetimeadded }}</td>
+      <td>{{ task.datetimedeadline }}</td>
       <td>{{ task.importance }}</td>
       <td>{{ task.state }}</td>
-      <td>{{ task.dateTimeClosedAt }}</td>
+      <td>{{ task.datetimeclosedat }}</td>
     </tr>
   </tbody>
 </table>

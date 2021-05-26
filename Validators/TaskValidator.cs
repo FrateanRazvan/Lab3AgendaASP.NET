@@ -11,9 +11,7 @@ namespace Lab3AgendaV2.Validators
     public class TaskValidator : AbstractValidator<TaskViewModel>
     {
 
-       
-
-
+      
         public TaskValidator(){
             RuleFor(x => x.Title).MaximumLength(80);
             RuleFor(x => x.Description).MaximumLength(2000);

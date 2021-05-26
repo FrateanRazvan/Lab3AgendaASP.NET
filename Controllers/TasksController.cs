@@ -9,6 +9,7 @@ using Lab3AgendaV2.Data;
 using Lab3AgendaV2.Models;
 using Lab3AgendaV2.ViewModel;
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 
 namespace Lab3AgendaV2.Controllers
 {
@@ -18,11 +19,13 @@ namespace Lab3AgendaV2.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
+        private readonly ILogger<TasksController> _logger;
 
-        public TasksController(ApplicationDbContext context, IMapper mapper)
+        public TasksController(ApplicationDbContext context, IMapper mapper, ILogger<TasksController> logger)
         {
             _context = context;
             _mapper = mapper;
+            _logger = logger;
         }
 
         // GET: api/Tasks
@@ -86,7 +89,7 @@ namespace Lab3AgendaV2.Controllers
             }) ;
 
             var query_two = _context.Tasks.Where(t => t.Id== id).Include(t => t.Comments).Select(t => _mapper.Map<TaskWithCommentViewModel>(t));
-
+            _logger.LogInformation(query_two.ToQueryString());
             return query_two.ToList();
         }
 

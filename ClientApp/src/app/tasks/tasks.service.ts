@@ -10,14 +10,14 @@ import { Task } from './task.model';
 })
 export class TasksService {
 
-  private apiUrl: string;
+  apiUrl: string;
 
   constructor(private httpClient: HttpClient, @Inject('API_URL') apiUrl: string) {
     this.apiUrl = apiUrl;
   }
 
   getTasks(): Observable<Task[]> {
-    return this.httpClient.get<Task[]>(this.apiUrl + 'tasks');
+    return this.httpClient.get<Task[]>(this.apiUrl + 'tasks');  
   }
 
 }
