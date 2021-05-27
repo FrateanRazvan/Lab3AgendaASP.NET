@@ -85,7 +85,7 @@ namespace Lab3AgendaV2.Controllers
 
             if(user != null && await _userManager.CheckPasswordAsync(user, loginRequest.Password))
             {
-                var claim = new[]
+                var claims = new[]
                 {
                     new Claim(JwtRegisteredClaimNames.Sub, user.UserName)
                 };
@@ -98,7 +98,8 @@ namespace Lab3AgendaV2.Controllers
                     issuer: _configuration["Jwt:Site"],
                     audience: _configuration["Jwt:Site"],
                     expires: DateTime.UtcNow.AddMinutes(expiryInMinutes),
-                    signingCredentials: new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256)
+                    signingCredentials: new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256),
+                    claims: claims
                     );
 
                 return Ok(

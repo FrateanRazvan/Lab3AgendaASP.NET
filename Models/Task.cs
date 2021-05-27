@@ -32,5 +32,7 @@ namespace Lab3AgendaV2.Models
         public DateTime DateTimeClosedAt { get; set; }
 
         public List<Comment> Comments { get; set; }
+
+        public List<Project> Projects { get; set; }
     }
 }
